@@ -6,7 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class TestDiv {
+public class TestDivide {
     private Calculator calculator = new Calculator();
 
     @BeforeMethod
@@ -15,13 +15,13 @@ public class TestDiv {
     }
 
     @Test(groups = {"multAndDiv"},dataProvider = "dataProviderDiv", dataProviderClass = DataProviderClass.class)
-    public void testDivLong(long numFirst, long numSecond, long expected) {
+    public void testDivideLong(long numFirst, long numSecond, long expected) {
         long actual = calculator.div(numFirst, numSecond);
         Assert.assertEquals(actual, expected);
     }
 
     @Test(groups = {"multAndDiv"},dataProvider = "dataProviderDivDouble", dataProviderClass = DataProviderClass.class)
-    public void testDivDouble(double numFirst, double numSecond, double expected) {
+    public void testDivideDouble(double numFirst, double numSecond, double expected) {
         double actual = calculator.div(numFirst, numSecond);
         Assert.assertEquals(actual, expected);
     }

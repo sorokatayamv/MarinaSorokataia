@@ -6,7 +6,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class TestMult {
+public class TestMultiply {
     private Calculator calculator = new Calculator();
 
     @BeforeMethod
@@ -15,7 +15,7 @@ public class TestMult {
     }
 
     @Test(groups = {"multAndDiv"},dataProvider = "dataProviderMult", dataProviderClass = DataProviderClass.class)
-    public void testMultLong(long numFirst, long numSecond, long expected) {
+    public void testMultiplyLong(long numFirst, long numSecond, long expected) {
         long actual = calculator.mult(numFirst, numSecond);
         Assert.assertEquals(actual, expected);
     }
