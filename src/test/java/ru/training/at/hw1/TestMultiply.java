@@ -9,17 +9,19 @@ import org.testng.annotations.Test;
 public class TestMult {
     private Calculator calculator = new Calculator();
 
-    @Test(dataProvider = "dataProviderMult", dataProviderClass = DataProviderClass.class)
-    public void testMultLong(long numFirst, long numSecond, long expected){
+    @BeforeMethod
+    public void beforeMethod(){
+        calculator = new Calculator();
+    }
+
+    @Test(groups = {"multAndDiv"},dataProvider = "dataProviderMult", dataProviderClass = DataProviderClass.class)
+    public void testMultLong(long numFirst, long numSecond, long expected) {
         long actual = calculator.mult(numFirst, numSecond);
         Assert.assertEquals(actual, expected);
     }
-    @BeforeMethod
-    public void setUp(){
-        calculator = new Calculator();
-    }
+
     @AfterMethod
-    public void tearDown(){
+    public void afterMethod(){
         calculator = null;
     }
 }
