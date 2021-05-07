@@ -1,0 +1,25 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="allTestsSuite">
+    <test name="sumTest">
+        <classes>
+            <class name="ru.training.at.hw1.TestSum"/>
+        </classes>
+    </test>
+    <test name="subTest">
+        <classes>
+            <class name="ru.training.at.hw1.TestSubtract"/>
+        </classes>
+    </test>
+    <test name = "multTest">
+        <classes>
+            <class name="ru.training.at.hw1.TestMultiply"/>
+        </classes>
+    </test>
+    <test name="divTest">
+        <classes>
+            <class name="ru.training.at.hw1.TestDivide"/>
+        </classes>
+    </test>
+</suite>
+
