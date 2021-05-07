@@ -50,6 +50,11 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.5</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -97,6 +102,18 @@
             <id>allTests</id>
             <properties>
                 <testng.suite>${testng.configs.path}/allTests.xml</testng.suite>
+            </properties>
+        </profile>
+        <profile>
+            <id>exerciseFirstTests</id>
+            <properties>
+                <testng.suite>${testng.configs.path}/exercisefirst.xml</testng.suite>
+            </properties>
+        </profile>
+        <profile>
+            <id>exerciseSecondTests</id>
+            <properties>
+                <testng.suite>${testng.configs.path}/exercisesecond.xml</testng.suite>
             </properties>
         </profile>
     </profiles>
