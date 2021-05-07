@@ -20,11 +20,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>3.141.59</version>
-        </dependency>
-        <dependency>
             <groupId>com.epam.tat.module4</groupId>
             <artifactId>calculator</artifactId>
             <version>1.0</version>
@@ -96,12 +91,6 @@
             <id>allTests</id>
             <properties>
                 <testng.suite>${testng.configs.path}/allTests.xml</testng.suite>
-            </properties>
-        </profile>
-        <profile>
-            <id>lessonSecondTests</id>
-            <properties>
-                <testng.suite>${testng.configs.path}/lesson2tests.xml</testng.suite>
             </properties>
         </profile>
     </profiles>
