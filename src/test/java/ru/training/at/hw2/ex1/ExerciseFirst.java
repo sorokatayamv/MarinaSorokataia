@@ -1,24 +1,27 @@
 package ru.training.at.hw2.ex1;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import ru.training.at.hw2.TestBaseClass;
 
-public class ExerciseFirst {
+public class ExerciseFirst extends TestBaseClass {
+
     SoftAssert softAssert = new SoftAssert();
-    WebDriver webDriver;
+
+    @BeforeTest
+    @Override
+    public void beforeTest() {
+        super.beforeTest();
+    }
 
     @Test
     public void homePageTestWithSoftAsserts() {
-
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-        webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
 
         //1.Open site
         webDriver.get("https://jdi-testing.github.io/jdi-light/index.html ");
@@ -164,8 +167,11 @@ public class ExerciseFirst {
                 .until(ExpectedConditions.presenceOfElementLocated(By
                         .xpath("//li[position()=5]"))));
         softAssert.assertTrue(elementsPackLeft.isDisplayed());
-
-        //12.Close Browser
-        webDriver.quit();
+    }
+    //12.Close Browser
+    @AfterTest
+    @Override
+    public void afterTest() {
+        super.afterTest();
     }
 }
