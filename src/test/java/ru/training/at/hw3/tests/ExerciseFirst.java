@@ -1,8 +1,6 @@
 package ru.training.at.hw3.tests;
 
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ru.training.at.hw3.pages.Header;
@@ -13,12 +11,6 @@ import ru.training.at.hw3.utils.WaitActions;
 public class ExerciseFirst extends TestBase {
     SoftAssert softAssert = new SoftAssert();
 
-    @BeforeTest
-    @Override
-    public void beforeTest() {
-        super.beforeTest();
-    }
-
     @Test
     public void homePageTestWithSoftAsserts() {
         HomePage homePage = PageFactory.initElements(webDriver, HomePage.class);
@@ -28,7 +20,7 @@ public class ExerciseFirst extends TestBase {
         homePage.openSite();
 
         //2.Assert Browser title
-        softAssert.assertEquals(homePage.getBrowserTitle(), "Home page");
+        softAssert.assertEquals(homePage.getBrowserTitle(), "Home Page");
 
         //3.Perform login
         waitActions.waitUntilCondition(webDriver ->
@@ -65,17 +57,20 @@ public class ExerciseFirst extends TestBase {
         //7.Assert that there are 4 texts on the Index Page under icons and they have proper text
         waitActions.waitUntilCondition(webDriver -> homePage.getTextFirstHomePage().isDisplayed());
         softAssert.assertEquals(homePage.getTextFirstHomePage().getText(),
-                "To include good practices and ideas from successful EPAM project");
+                "To include good practices\n" +
+                        "and ideas from successful\n" +
+                        "EPAM project");
         waitActions.waitUntilCondition(webDriver -> homePage.getTextSecondHomePage().isDisplayed());
         softAssert.assertEquals(homePage.getTextSecondHomePage().getText(),
-                "To be flexible and customizable");
+                "To be flexible and\n" +
+                        "customizable");
         waitActions.waitUntilCondition(webDriver -> homePage.getTextThirdHomePage().isDisplayed());
         softAssert.assertEquals(homePage.getTextThirdHomePage().getText(),
                 "To be multiplatform");
         waitActions.waitUntilCondition(webDriver -> homePage.getTextFourthHomePage().isDisplayed());
         softAssert.assertEquals(homePage.getTextFourthHomePage().getText(),
-                "Already have good base (about 20 internal " +
-                        "and some external projects), wish to get more…");
+                "Already have good base\n" + "(about 20 internal and\n" +
+                        "some external projects),\n" + "wish to get more…");
 
         //8.Assert that there is the iframe with “Frame Button” exist
         waitActions.waitUntilCondition(webDriver -> homePage.getIFrame().isDisplayed());
@@ -105,11 +100,6 @@ public class ExerciseFirst extends TestBase {
         waitActions.waitUntilCondition(webDriver -> homePage.getElementsPackLeftMenu().isDisplayed());
         softAssert.assertEquals(homePage.getElementsPackLeftMenu().getText(),
                 "Elements packs");
-    }
-
-    @AfterTest
-    @Override
-    public void afterTest() {
-        super.afterTest();
+        softAssert.assertAll();
     }
 }

@@ -2,8 +2,6 @@ package ru.training.at.hw3.tests;
 
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.training.at.hw3.pages.DifferentElementsPage;
 import ru.training.at.hw3.pages.Header;
@@ -11,12 +9,6 @@ import ru.training.at.hw3.pages.HomePage;
 import ru.training.at.hw3.utils.WaitActions;
 
 public class ExerciseSecond extends TestBase {
-
-    @BeforeTest
-    @Override
-    public void beforeTest() {
-        super.beforeTest();
-    }
 
     @Test
     public void homePageTest() {
@@ -81,18 +73,12 @@ public class ExerciseSecond extends TestBase {
         Assert.assertTrue(difElPage.getPanelLogWind()
                 .getText().contains("Wind: condition changed to true"));
         waitActions.waitUntilCondition(webDriver ->
-                difElPage.getSelenRadio().isDisplayed());
-        Assert.assertTrue(difElPage.getSelenRadio()
+                difElPage.getPanelLogSelen().isDisplayed());
+        Assert.assertTrue(difElPage.getPanelLogSelen()
                 .getText().contains("metal: value changed to Selen"));
         waitActions.waitUntilCondition(webDriver ->
                 difElPage.getDropdownColor().isDisplayed());
         Assert.assertTrue(difElPage.getPanelLogYellow()
                 .getText().contains("Colors: value changed to Yellow"));
-    }
-
-    @AfterTest
-    @Override
-    public void afterTest() {
-        super.afterTest();
     }
 }

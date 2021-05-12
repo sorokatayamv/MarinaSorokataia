@@ -54,6 +54,11 @@
             <artifactId>webdrivermanager</artifactId>
             <version>4.4.3</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.30</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -116,15 +121,9 @@
             </properties>
         </profile>
         <profile>
-            <id>exerciseFirstHw3</id>
+            <id>homework3test</id>
             <properties>
-                <testng.suite>${testng.configs.path}/homework3tests/exercisefirsthw3.xml</testng.suite>
-            </properties>
-        </profile>
-        <profile>
-            <id>exerciseSecondHw3</id>
-            <properties>
-                <testng.suite>${testng.configs.path}/homework3tests/exercisesecondhw3.xml</testng.suite>
+                <testng.suite>${testng.configs.path}/homework3test.xml</testng.suite>
             </properties>
         </profile>
     </profiles>

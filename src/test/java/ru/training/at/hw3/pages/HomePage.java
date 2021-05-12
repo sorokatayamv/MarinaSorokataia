@@ -45,7 +45,7 @@ public class HomePage extends BaseClass {
     @FindBy(xpath = "//*[text()='To be flexible and' and @class='benefit-txt']")
     private WebElement textSecondHomePage;
 
-    @FindBy(className = "benefit-txt")
+    @FindBy(css = "div:nth-child(3) > div > span")
     private WebElement textThirdHomePage;
 
     @FindBy(xpath = "//*[text()='Already have good base' and @class='benefit-txt']")
@@ -57,19 +57,18 @@ public class HomePage extends BaseClass {
     @FindBy(css = "input[id='frame-button']")
     private WebElement iFrameButton;
 
-    @FindBy(css = "a[href='index.html']")
+    @FindBy(css = "li.active > a")
     private WebElement homeLeftMenu;
 
-    @FindBy(css = "a[href='contacts.html']")
+    @FindBy(xpath = "//*[@id='mCSB_1_container']/ul/li[2]/a")
     private WebElement contactFormLeftMenu;
 
-    @FindBy(xpath = "//li[position()=3]")
+    @FindBy(xpath = "//*[@id='mCSB_1_container']/ul/li[3]/a")
     private WebElement serviceLeftMenu;
 
-    @FindBy(css = "a[href='metals-colors.html']")
+    @FindBy(xpath = "//*[@id='mCSB_1_container']/ul/li[4]/a")
     private WebElement metalAndColorsLeftMenu;
 
-    //"label.label-checkbox:nth-child(1)"
     @FindBy(css = "li.menu-title:nth-child(5) > a")
     private WebElement elementsPackLeftMenu;
 
