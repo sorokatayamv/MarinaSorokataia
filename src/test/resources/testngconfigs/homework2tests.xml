@@ -1,9 +1,14 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="exerciseFirstSuite">
+<suite name="homework2testSuit">
     <test name="homePageTestsWithSoftAsserts">
         <classes>
             <class name="ru.training.at.hw2.ex1.ExerciseFirst"/>
+        </classes>
+    </test>
+    <test name="homePageTests">
+        <classes>
+            <class name="ru.training.at.hw2.ex2.ExerciseSecond"/>
         </classes>
     </test>
 </suite>

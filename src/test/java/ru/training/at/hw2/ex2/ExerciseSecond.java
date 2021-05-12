@@ -6,83 +6,69 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import ru.training.at.hw2.TestBaseClass;
 
 public class ExerciseSecond extends TestBaseClass {
 
-    @BeforeTest
-    @Override
-    public void beforeTest() {
-        super.beforeTest();
-    }
-
     @Test
     public void homePageTest() {
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 10);
 
         //1.Open test site by URL
         webDriver.get("https://jdi-testing.github.io/jdi-light/index.html ");
 
         //2.Assert Browser title
-        (new WebDriverWait(webDriver, 10))
-                .until(ExpectedConditions.titleContains(webDriver.getTitle()));
+        webDriverWait.until(ExpectedConditions.titleContains(webDriver.getTitle()));
         String actualTitle = webDriver.getTitle();
         String expectedTitle = "Home Page";
         Assert.assertEquals(actualTitle, expectedTitle);
 
         //3.Perform login
-        WebElement loginButton = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.elementToBeClickable(webDriver.findElement(By.id("user-icon")))));
+        WebElement loginButton = webDriverWait.until(ExpectedConditions
+                .elementToBeClickable(webDriver.findElement(By.id("user-icon"))));
         loginButton.click();
-        WebElement username = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By.id("name"))));
+        WebElement username = webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("name")));
         username.sendKeys("Roman");
-        WebElement password = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By.id("password"))));
+        WebElement password = webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("password")));
         password.sendKeys("Jdi1234");
-        WebElement enterButton = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id='login-button']"))));
+        WebElement enterButton = webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//*[@id='login-button']")));
         enterButton.click();
 
         //4.Assert Username is loggined
-        WebElement userLoginName = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By.id("user-name"))));
+        WebElement userLoginName = webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.id("user-name")));
         String actualUserName = userLoginName.getText();
         String expectedUserName = "ROMAN IOVLEV";
         Assert.assertEquals(actualUserName, expectedUserName);
 
         //5.Open through the header menu Service -> Different Elements Page
-        WebElement serviceButtonHeader = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .xpath("//li[position()=3]"))));
+        WebElement serviceButtonHeader = webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.xpath("//li[position()=3]")));
         serviceButtonHeader.click();
-        WebElement differentElementsButton = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .cssSelector("a[href='different-elements.html']"))));
+        WebElement differentElementsButton = webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.cssSelector("a[href='different-elements.html']")));
         differentElementsButton.click();
 
         //6.Select checkboxes
-        WebElement waterCheckbox = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .cssSelector("label.label-checkbox:nth-child(1)"))));
+        WebElement waterCheckbox = webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.cssSelector("label.label-checkbox:nth-child(1)")));
         waterCheckbox.click();
-        WebElement windCheckbox = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .cssSelector("label.label-checkbox:nth-child(3)"))));
+        WebElement windCheckbox = webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.cssSelector("label.label-checkbox:nth-child(3)")));
         windCheckbox.click();
 
         //7.Select radio
-        WebElement selenRadio = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .cssSelector("label.label-radio:nth-child(4)"))));
+        WebElement selenRadio = webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.cssSelector("label.label-radio:nth-child(4)")));
         selenRadio.click();
 
         //8.Select in dropdown
-        WebElement dropdown = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .cssSelector("select.uui-form-element"))));
+        WebElement dropdown = webDriverWait.until(ExpectedConditions
+                .presenceOfElementLocated(By.cssSelector("select.uui-form-element")));
         Select dropdownMenu = new Select(dropdown);
         dropdownMenu.selectByIndex(3);
 
@@ -93,34 +79,25 @@ public class ExerciseSecond extends TestBaseClass {
         // is corresponded to the status of radio button
         // 3)for dropdown there is a log row and value
         // is corresponded to the selected value
-        WebElement panelLogWaterCheckbox = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .cssSelector("div.info-panel-body.info-panel-body-log " +
-                                "> div > ul > li:nth-child(4)"))));
+        WebElement panelLogWaterCheckbox = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By
+                .cssSelector("div.info-panel-body.info-panel-body-log > div > ul > li:nth-child(4)")));
         Assert.assertTrue(panelLogWaterCheckbox.getText()
                 .contains("Water: condition changed to true"));
-        WebElement panelLogWindCheckbox = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .cssSelector("div.info-panel-body.info-panel-body-log " +
-                                "> div > ul > li:nth-child(3)"))));
+        WebElement panelLogWindCheckbox = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By
+                .cssSelector("div.info-panel-body.info-panel-body-log " +
+                        "> div > ul > li:nth-child(3)")));
         Assert.assertTrue(panelLogWindCheckbox.getText()
                 .contains("Wind: condition changed to true"));
-        WebElement panelLogSelenRadio = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .cssSelector("div.info-panel-body.info-panel-body-log > div > ul > li:nth-child(2)"))));
+        WebElement panelLogSelenRadio = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By
+                .cssSelector("div.info-panel-body.info-panel-body-log " +
+                        "> div > ul > li:nth-child(2)")));
         Assert.assertTrue(panelLogSelenRadio.getText().contains("metal: value changed to Selen"));
-        WebElement panelLogYellowDropdown = (new WebDriverWait(webDriver, 10)
-                .until(ExpectedConditions.presenceOfElementLocated(By
-                        .cssSelector("div.info-panel-body.info-panel-body-log > div > ul > li:nth-child(1)"))));
+        WebElement panelLogYellowDropdown = webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By
+                .cssSelector("div.info-panel-body.info-panel-body-log " +
+                        "> div > ul > li:nth-child(1)")));
         Assert.assertTrue(panelLogYellowDropdown.getText().contains("Colors: value changed to Yellow"));
     }
-
     //10.Close Browser
-    @AfterTest
-    @Override
-    public void afterTest() {
-        super.afterTest();
-    }
 }
 
 
