@@ -55,6 +55,11 @@
             <artifactId>selenium-java</artifactId>
             <version>3.141.5</version>
         </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>4.4.3</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -114,6 +119,18 @@
             <id>exerciseSecondTests</id>
             <properties>
                 <testng.suite>${testng.configs.path}/exercisesecond.xml</testng.suite>
+            </properties>
+        </profile>
+        <profile>
+            <id>exerciseFirstHw3</id>
+            <properties>
+                <testng.suite>${testng.configs.path}/homework3tests/exercisefirsthw3.xml</testng.suite>
+            </properties>
+        </profile>
+        <profile>
+            <id>exerciseSecondHw3</id>
+            <properties>
+                <testng.suite>${testng.configs.path}/homework3tests/exercisesecondhw3.xml</testng.suite>
             </properties>
         </profile>
     </profiles>
