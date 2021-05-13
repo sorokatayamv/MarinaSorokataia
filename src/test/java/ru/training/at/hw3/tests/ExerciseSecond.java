@@ -8,10 +8,30 @@ import ru.training.at.hw3.pages.Header;
 import ru.training.at.hw3.pages.HomePage;
 import ru.training.at.hw3.utils.WaitActions;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 public class ExerciseSecond extends TestBase {
 
     @Test
     public void homePageTest() {
+        File data = new File("src/test/resources/hw3properties/" +
+                "test.properties");
+        FileInputStream fileInput = null;
+        try {
+            fileInput = new FileInputStream(data);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Properties prop = new Properties();
+        try {
+            prop.load(fileInput);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         HomePage homePage = PageFactory.initElements(webDriver, HomePage.class);
         WaitActions waitActions = new WaitActions(webDriver);
 
@@ -19,7 +39,8 @@ public class ExerciseSecond extends TestBase {
         homePage.openSite();
 
         //2.Assert Browser title
-        Assert.assertEquals(homePage.getBrowserTitle(), "Home Page");
+        Assert.assertEquals(homePage.getBrowserTitle(),
+                prop.getProperty("homePageTitle"));
 
         //3.Perform login
         waitActions.waitUntilCondition(webDriver ->
@@ -29,7 +50,8 @@ public class ExerciseSecond extends TestBase {
         //4.Assert Username is loggined
         waitActions.waitUntilCondition(webDriver ->
                 homePage.getUserLoginName().isDisplayed());
-        Assert.assertEquals(homePage.getUserLoginName().getText(), "ROMAN IOVLEV");
+        Assert.assertEquals(homePage.getUserLoginName().getText(),
+                prop.getProperty("userLoginName"));
 
         //5.Open through the header menu Service -> Different Elements Page
         Header header = PageFactory.initElements(webDriver, Header.class);
@@ -67,18 +89,18 @@ public class ExerciseSecond extends TestBase {
         waitActions.waitUntilCondition(webDriver1 ->
                 difElPage.getPanelLogWater().isDisplayed());
         Assert.assertTrue(difElPage.getPanelLogWater()
-                .getText().contains("Water: condition changed to true"));
+                .getText().contains(prop.getProperty("panelLogWater")));
         waitActions.waitUntilCondition(webDriver ->
                 difElPage.getPanelLogWind().isDisplayed());
         Assert.assertTrue(difElPage.getPanelLogWind()
-                .getText().contains("Wind: condition changed to true"));
+                .getText().contains(prop.getProperty("panelLogWind")));
         waitActions.waitUntilCondition(webDriver ->
                 difElPage.getPanelLogSelen().isDisplayed());
         Assert.assertTrue(difElPage.getPanelLogSelen()
-                .getText().contains("metal: value changed to Selen"));
+                .getText().contains(prop.getProperty("panelLogSelen")));
         waitActions.waitUntilCondition(webDriver ->
                 difElPage.getDropdownColor().isDisplayed());
         Assert.assertTrue(difElPage.getPanelLogYellow()
-                .getText().contains("Colors: value changed to Yellow"));
+                .getText().contains(prop.getProperty("panelLogYellow")));
     }
 }

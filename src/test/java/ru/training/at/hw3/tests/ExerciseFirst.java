@@ -7,12 +7,33 @@ import ru.training.at.hw3.pages.Header;
 import ru.training.at.hw3.pages.HomePage;
 import ru.training.at.hw3.utils.WaitActions;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+
 
 public class ExerciseFirst extends TestBase {
     SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void homePageTestWithSoftAsserts() {
+        File data = new File("src/test/resources/hw3properties/" +
+                "test.properties");
+        FileInputStream fileInput = null;
+        try {
+            fileInput = new FileInputStream(data);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Properties prop = new Properties();
+        try {
+            prop.load(fileInput);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         HomePage homePage = PageFactory.initElements(webDriver, HomePage.class);
         WaitActions waitActions = new WaitActions(webDriver);
 
@@ -20,7 +41,8 @@ public class ExerciseFirst extends TestBase {
         homePage.openSite();
 
         //2.Assert Browser title
-        softAssert.assertEquals(homePage.getBrowserTitle(), "Home Page");
+        softAssert.assertEquals(homePage.getBrowserTitle(),
+                prop.getProperty("homePageTitle"));
 
         //3.Perform login
         waitActions.waitUntilCondition(webDriver ->
@@ -30,19 +52,24 @@ public class ExerciseFirst extends TestBase {
         //4.Assert Username is loggined
         waitActions.waitUntilCondition(webDriver ->
                 homePage.getUserLoginName().isDisplayed());
-        softAssert.assertEquals(homePage.getUserLoginName().getText(), "ROMAN IOVLEV");
+        softAssert.assertEquals(homePage.getUserLoginName().getText(),
+                prop.getProperty("userLoginName"));
 
         //5.Assert that there are 4 items on the header
         //section are displayed and they have proper texts
         Header header = PageFactory.initElements(webDriver, Header.class);
         waitActions.waitUntilCondition(webDriver -> header.getHomeHeader().isDisplayed());
-        softAssert.assertEquals(header.getHomeHeader().getText(), "HOME");
+        softAssert.assertEquals(header.getHomeHeader().getText(),
+                prop.getProperty("homeHeader"));
         waitActions.waitUntilCondition(webDriver -> header.getContactFormHeader().isDisplayed());
-        softAssert.assertEquals(header.getContactFormHeader().getText(), "CONTACT FORM");
+        softAssert.assertEquals(header.getContactFormHeader().getText(),
+                prop.getProperty("contactFormHeader"));
         waitActions.waitUntilCondition(webDriver -> header.getServiceHeader().isDisplayed());
-        softAssert.assertEquals(header.getServiceHeader().getText(), "SERVICE");
+        softAssert.assertEquals(header.getServiceHeader().getText(),
+                prop.getProperty("serviceHeader"));
         waitActions.waitUntilCondition(webDriver -> header.getMetalsAndColorsHeader().isDisplayed());
-        softAssert.assertEquals(header.getMetalsAndColorsHeader().getText(), "METALS & COLORS");
+        softAssert.assertEquals(header.getMetalsAndColorsHeader().getText(),
+                prop.getProperty("metalsAndColorsHeader"));
 
         //6.Assert that there are 4 images on the Index Page and they are displayed
         waitActions.waitUntilCondition(webDriver -> homePage.getImageFirstHomePage().isDisplayed());
@@ -57,20 +84,16 @@ public class ExerciseFirst extends TestBase {
         //7.Assert that there are 4 texts on the Index Page under icons and they have proper text
         waitActions.waitUntilCondition(webDriver -> homePage.getTextFirstHomePage().isDisplayed());
         softAssert.assertEquals(homePage.getTextFirstHomePage().getText(),
-                "To include good practices\n" +
-                        "and ideas from successful\n" +
-                        "EPAM project");
+                prop.getProperty("textFirstHomePage"));
         waitActions.waitUntilCondition(webDriver -> homePage.getTextSecondHomePage().isDisplayed());
         softAssert.assertEquals(homePage.getTextSecondHomePage().getText(),
-                "To be flexible and\n" +
-                        "customizable");
+                prop.getProperty("textSecondHomePage"));
         waitActions.waitUntilCondition(webDriver -> homePage.getTextThirdHomePage().isDisplayed());
         softAssert.assertEquals(homePage.getTextThirdHomePage().getText(),
-                "To be multiplatform");
+                prop.getProperty("textThirdHomePage"));
         waitActions.waitUntilCondition(webDriver -> homePage.getTextFourthHomePage().isDisplayed());
         softAssert.assertEquals(homePage.getTextFourthHomePage().getText(),
-                "Already have good base\n" + "(about 20 internal and\n" +
-                        "some external projects),\n" + "wish to get more…");
+                prop.getProperty("textFourthHomePage"));
 
         //8.Assert that there is the iframe with “Frame Button” exist
         waitActions.waitUntilCondition(webDriver -> homePage.getIFrame().isDisplayed());
@@ -87,19 +110,19 @@ public class ExerciseFirst extends TestBase {
         // are displayed and they have proper text
         waitActions.waitUntilCondition(webDriver -> homePage.getHomeLeftMenu().isDisplayed());
         softAssert.assertEquals(homePage.getHomeLeftMenu().getText(),
-                "Home");
+                prop.getProperty("homeLeftMenu"));
         waitActions.waitUntilCondition(webDriver -> homePage.getContactFormLeftMenu().isDisplayed());
         softAssert.assertEquals(homePage.getContactFormLeftMenu().getText(),
-                "Contact form");
+                prop.getProperty("contactFormLeftMenu"));
         waitActions.waitUntilCondition(webDriver -> homePage.getServiceLeftMenu().isDisplayed());
         softAssert.assertEquals(homePage.getServiceLeftMenu().getText(),
-                "Service");
+                prop.getProperty("serviceLeftMenu"));
         waitActions.waitUntilCondition(webDriver -> homePage.getMetalAndColorsLeftMenu().isDisplayed());
         softAssert.assertEquals(homePage.getMetalAndColorsLeftMenu().getText(),
-                "Metals & Colors");
+                prop.getProperty("metalAndColorsLeftMenu"));
         waitActions.waitUntilCondition(webDriver -> homePage.getElementsPackLeftMenu().isDisplayed());
         softAssert.assertEquals(homePage.getElementsPackLeftMenu().getText(),
-                "Elements packs");
+                prop.getProperty("elementsPackLeftMenu"));
         softAssert.assertAll();
     }
 }
