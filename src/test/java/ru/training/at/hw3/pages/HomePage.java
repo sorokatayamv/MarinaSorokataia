@@ -3,10 +3,11 @@ package ru.training.at.hw3.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.training.at.hw3.testdata.TestData;
+import ru.training.at.hw3.utils.ReaderUserDataForLogin;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class HomePage extends BaseClass {
@@ -75,21 +76,13 @@ public class HomePage extends BaseClass {
     @FindBy(id = "user-name")
     private WebElement userLoginName;
 
+
     public void login() {
         loginButton.click();
-        FileInputStream inputStream;
-        Properties properties = new Properties();
-        try {
-            inputStream = new FileInputStream("src/test/resources/hw3properties/" +
-                    "config.properties");
-            properties.load(inputStream);
-            loginField.sendKeys(properties.getProperty("username"));
-            passwordField.sendKeys(properties.getProperty("password"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Properties prop = null;
+        prop = ReaderUserDataForLogin.getLoginData();
+        loginField.sendKeys(prop.getProperty("username"));
+        passwordField.sendKeys(prop.getProperty("password"));
         enterButton.click();
     }
 
@@ -176,4 +169,53 @@ public class HomePage extends BaseClass {
     public WebElement getLoginButton() {
         return loginButton;
     }
+
+    public List<WebElement> getImages() {
+        List<WebElement> images = new ArrayList<>();
+        images.add(imageFirstHomePage);
+        images.add(imageSecondHomePage);
+        images.add(imageThirdHomePage);
+        images.add(imageFourthHomePage);
+        return images;
+    }
+
+    public List<WebElement> getTextsUnderImages(){
+        List<WebElement> textsUnderImages = new ArrayList<>();
+        textsUnderImages.add(textFirstHomePage);
+        textsUnderImages.add(textSecondHomePage);
+        textsUnderImages.add(textThirdHomePage);
+        textsUnderImages.add(textFourthHomePage);
+        return textsUnderImages;
+    }
+
+    public List<String> getTextsUnderImagesExpected(){
+        List<String> textsExpected = new ArrayList<>();
+        textsExpected.add(TestData.textFirstHomePage);
+        textsExpected.add(TestData.textSecondHomePage);
+        textsExpected.add(TestData.textThirdHomePage);
+        textsExpected.add(TestData.textFourthHomePage);
+        return textsExpected;
+    }
+
+    public List<WebElement> getLeftMenu() {
+        List<WebElement> leftMenu = new ArrayList<>();
+        leftMenu.add(homeLeftMenu);
+        leftMenu.add(contactFormLeftMenu);
+        leftMenu.add(serviceLeftMenu);
+        leftMenu.add(metalAndColorsLeftMenu);
+        leftMenu.add(elementsPackLeftMenu);
+        return leftMenu;
+    }
+
+    public List<String> getLeftMenuExpected() {
+        List<String> leftMenuExpected = new ArrayList<>();
+        leftMenuExpected.add(TestData.homeLeftMenu);
+        leftMenuExpected.add(TestData.contactFormLeftMenu);
+        leftMenuExpected.add(TestData.serviceLeftMenu);
+        leftMenuExpected.add(TestData.metalAndColorsLeftMenu);
+        leftMenuExpected.add(TestData.elementsPackLeftMenu);
+        return leftMenuExpected;
+    }
+
+
 }

@@ -1,37 +1,20 @@
 package ru.training.at.hw3.tests;
 
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.training.at.hw3.pages.DifferentElementsPage;
 import ru.training.at.hw3.pages.Header;
 import ru.training.at.hw3.pages.HomePage;
+import ru.training.at.hw3.testdata.TestData;
 import ru.training.at.hw3.utils.WaitActions;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
 
 public class ExerciseSecond extends TestBase {
 
     @Test
     public void homePageTest() {
-        File data = new File("src/test/resources/hw3properties/" +
-                "test.properties");
-        FileInputStream fileInput = null;
-        try {
-            fileInput = new FileInputStream(data);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Properties prop = new Properties();
-        try {
-            prop.load(fileInput);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
         HomePage homePage = PageFactory.initElements(webDriver, HomePage.class);
         WaitActions waitActions = new WaitActions(webDriver);
 
@@ -40,7 +23,7 @@ public class ExerciseSecond extends TestBase {
 
         //2.Assert Browser title
         Assert.assertEquals(homePage.getBrowserTitle(),
-                prop.getProperty("homePageTitle"));
+                TestData.homePageTitle);
 
         //3.Perform login
         waitActions.waitUntilCondition(webDriver ->
@@ -51,7 +34,7 @@ public class ExerciseSecond extends TestBase {
         waitActions.waitUntilCondition(webDriver ->
                 homePage.getUserLoginName().isDisplayed());
         Assert.assertEquals(homePage.getUserLoginName().getText(),
-                prop.getProperty("userLoginName"));
+                TestData.userLoginName);
 
         //5.Open through the header menu Service -> Different Elements Page
         Header header = PageFactory.initElements(webDriver, Header.class);
@@ -62,12 +45,11 @@ public class ExerciseSecond extends TestBase {
         //6.Select checkboxes
         DifferentElementsPage difElPage = PageFactory.initElements(webDriver,
                 DifferentElementsPage.class);
-        waitActions.waitUntilCondition(webDriver1 ->
-                difElPage.getWaterCheckbox().isDisplayed());
-        waitActions.waitUntilCondition(webDriver1 ->
-                difElPage.getWindCheckbox().isDisplayed());
-        difElPage.selectWaterCheckbox();
-        difElPage.selectWindCheckbox();
+        for(WebElement e : difElPage.getCheckBoxes()){
+            waitActions.waitUntilCondition(webDriver1 ->
+                    e.isDisplayed());
+            e.click();
+        }
 
         //7.Select radio
         waitActions.waitUntilCondition(webDriver1 ->
@@ -86,21 +68,12 @@ public class ExerciseSecond extends TestBase {
         // is corresponded to the status of radio button
         // 3)for dropdown there is a log row and value
         // is corresponded to the selected value
-        waitActions.waitUntilCondition(webDriver1 ->
-                difElPage.getPanelLogWater().isDisplayed());
-        Assert.assertTrue(difElPage.getPanelLogWater()
-                .getText().contains(prop.getProperty("panelLogWater")));
-        waitActions.waitUntilCondition(webDriver ->
-                difElPage.getPanelLogWind().isDisplayed());
-        Assert.assertTrue(difElPage.getPanelLogWind()
-                .getText().contains(prop.getProperty("panelLogWind")));
-        waitActions.waitUntilCondition(webDriver ->
-                difElPage.getPanelLogSelen().isDisplayed());
-        Assert.assertTrue(difElPage.getPanelLogSelen()
-                .getText().contains(prop.getProperty("panelLogSelen")));
-        waitActions.waitUntilCondition(webDriver ->
-                difElPage.getDropdownColor().isDisplayed());
-        Assert.assertTrue(difElPage.getPanelLogYellow()
-                .getText().contains(prop.getProperty("panelLogYellow")));
+        for (int i = 0; i < difElPage.getLogPanel().size(); i++) {
+            Assert.assertEquals(difElPage.getLogPanel().element()
+                            .getText().substring(9),
+                    difElPage.getLogPanelExpected().element());
+            difElPage.getLogPanel().remove();
+            difElPage.getLogPanelExpected().remove();
+        }
     }
 }

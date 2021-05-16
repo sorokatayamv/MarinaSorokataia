@@ -3,6 +3,10 @@ package ru.training.at.hw3.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ru.training.at.hw3.testdata.TestData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Header extends BaseClass {
     @FindBy(css = "a[href='index.html']")
@@ -42,6 +46,23 @@ public class Header extends BaseClass {
         return serviceHeader;
     }
 
+    public List<String> getHeader(){
+        List<String> header = new ArrayList<>();
+        header.add(homeHeader.getText());
+        header.add(contactFormHeader.getText());
+        header.add(serviceHeader.getText());
+        header.add(metalsAndColorsHeader.getText());
+        return header;
+    }
+
+    public List<String> getHeaderExpected(){
+        List<String> headerExpected = new ArrayList<>();
+        headerExpected.add(TestData.homeHeader);
+        headerExpected.add(TestData.contactFormHeader);
+        headerExpected.add(TestData.serviceHeader);
+        headerExpected.add(TestData.metalsAndColorsHeader);
+        return headerExpected;
+    }
     public WebElement getDifferentElementsFromServiceHeader() {
         return differentElementsFromServiceHeader;
     }

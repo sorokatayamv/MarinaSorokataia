@@ -3,8 +3,17 @@ package ru.training.at.hw3.pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import ru.training.at.hw3.testdata.TestData;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 public class DifferentElementsPage extends BaseClass {
+
+    @FindBy(css = "input[type='checkbox'")
+    List<WebElement> checkBoxes;
 
     @FindBy(css = "label.label-checkbox:nth-child(1)")
     private WebElement waterCheckbox;
@@ -20,19 +29,19 @@ public class DifferentElementsPage extends BaseClass {
 
     @FindBy(css = "div.info-panel-body.info-panel-body-log " +
             "> div > ul > li:nth-child(4)")
-    private WebElement panelLogWater;
+    private WebElement logRowWater;
 
     @FindBy(css = "div.info-panel-body.info-panel-body-log " +
             "> div > ul > li:nth-child(3)")
-    private WebElement panelLogWind;
+    private WebElement logRowWind;
 
     @FindBy(css = "div.info-panel-body.info-panel-body-log " +
             "> div > ul > li:nth-child(2)")
-    private WebElement panelLogSelen;
+    private WebElement logRowSelen;
 
     @FindBy(css = "div.info-panel-body.info-panel-body-log " +
             "> div > ul > li:nth-child(1)")
-    private WebElement panelLogYellow;
+    private WebElement logRowYellow;
 
     public void selectWaterCheckbox() {
         waterCheckbox.click();
@@ -51,20 +60,20 @@ public class DifferentElementsPage extends BaseClass {
         dropdownMenu.selectByIndex(3);
     }
 
-    public WebElement getPanelLogWater() {
-        return panelLogWater;
+    public WebElement getLogRowWater() {
+        return logRowWater;
     }
 
-    public WebElement getPanelLogWind() {
-        return panelLogWind;
+    public WebElement getLogRowWind() {
+        return logRowWind;
     }
 
-    public WebElement getPanelLogSelen() {
-        return panelLogSelen;
+    public WebElement getLogRowSelen() {
+        return logRowSelen;
     }
 
-    public WebElement getPanelLogYellow() {
-        return panelLogYellow;
+    public WebElement getLogRowYellow() {
+        return logRowYellow;
     }
 
     public WebElement getWaterCheckbox() {
@@ -81,5 +90,30 @@ public class DifferentElementsPage extends BaseClass {
 
     public WebElement getDropdownColor() {
         return dropdownColor;
+    }
+
+    public Deque<WebElement> getLogPanel() {
+        Deque<WebElement> logPanel = new ArrayDeque<>();
+        logPanel.add(logRowWater);
+        logPanel.add(logRowWind);
+        logPanel.add(logRowSelen);
+        logPanel.add(logRowYellow);
+        return logPanel;
+    }
+
+    public Deque<String> getLogPanelExpected() {
+        Deque<String> logPanelExpected = new ArrayDeque<>();
+        logPanelExpected.add(TestData.logRowWater);
+        logPanelExpected.add(TestData.logRowWind);
+        logPanelExpected.add(TestData.logRowSelen);
+        logPanelExpected.add(TestData.logRowYellow);
+        return logPanelExpected;
+    }
+
+    public List<WebElement> getCheckBoxes(){
+        List<WebElement> checkBoxes = new ArrayList<>();
+        checkBoxes.add(waterCheckbox);
+        checkBoxes.add(windCheckbox);
+        return checkBoxes;
     }
 }
