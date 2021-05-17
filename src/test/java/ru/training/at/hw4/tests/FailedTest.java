@@ -20,7 +20,7 @@ public class FailedTest extends TestBase {
         actionStep.openHomePage();
 
         //2.Assert Browser title
-        assertionStep.checkBrowserTitle(" ");
+        assertionStep.checkBrowserTitle(TestData.homePageTitle);
 
         //3.Perform login
         actionStep.loginFailed("User", "pass");
