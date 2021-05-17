@@ -14,5 +14,10 @@
             <class name="ru.training.at.hw4.tests.ExerciseSecond"/>
         </classes>
     </test>
+    <test name="homePageTestFailed">
+        <classes>
+            <class name="ru.training.at.hw4.tests.FailedTest"></class>
+        </classes>
+    </test>
 </suite>
 
