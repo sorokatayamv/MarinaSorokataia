@@ -28,7 +28,7 @@ public class ExerciseSecond extends TestBase {
         hardAssertSteps.checkBrowserTitle(TestData.homePageTitle);
 
         //3.Perform login
-        actionStep.login();
+        actionStep.loginSuccess();
 
         //4.Assert Username is loggined
         hardAssertSteps.checkIfUserLogged(TestData.userLoginName);

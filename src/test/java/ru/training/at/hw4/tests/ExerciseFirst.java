@@ -25,7 +25,7 @@ public class ExerciseFirst extends TestBase {
         assertionStep.checkBrowserTitle(TestData.homePageTitle);
 
         //3.Perform login
-        actionStep.login();
+        actionStep.loginSuccess();
 
         //4.Assert Username is loggined
         assertionStep.checkIfUserLogged(TestData.userLoginName);
