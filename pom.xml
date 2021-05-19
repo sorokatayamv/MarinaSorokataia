@@ -39,6 +39,19 @@
             </exclusions>
         </dependency>
         <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.141.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>4.4.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.30</version>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
@@ -109,21 +122,12 @@
             </properties>
         </profile>
         <profile>
-            <id>exerciseFirstTests</id>
-            <properties>
-                <testng.suite>${testng.configs.path}/exercisefirst.xml</testng.suite>
-            </properties>
-        </profile>
-        <profile>
-            <id>exerciseSecondTests</id>
-            <properties>
-                <testng.suite>${testng.configs.path}/exercisesecond.xml</testng.suite>
-            </properties>
-        </profile>
-        <profile>
             <id>homework3test</id>
             <properties>
                 <testng.suite>${testng.configs.path}/homework3test.xml</testng.suite>
+            <id>homework2tests</id>
+            <properties>
+                <testng.suite>${testng.configs.path}/homework2tests.xml</testng.suite>
             </properties>
         </profile>
     </profiles>
