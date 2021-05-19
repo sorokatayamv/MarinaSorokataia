@@ -8,6 +8,9 @@ import ru.training.at.hw4.pages.DifferentElementsPage;
 import ru.training.at.hw4.steps.ActionStep;
 import ru.training.at.hw4.steps.HardAssertSteps;
 import ru.training.at.hw4.testdata.TestData;
+import ru.training.at.hw4.utils.ReaderUserDataForLogin;
+
+import java.util.Properties;
 
 public class ExerciseSecond extends TestBase {
 
@@ -25,22 +28,25 @@ public class ExerciseSecond extends TestBase {
         actionStep.openHomePage();
 
         //2.Assert Browser title
-        hardAssertSteps.checkBrowserTitle(TestData.homePageTitle);
+        hardAssertSteps.checkBrowserTitle(TestData.HOME_PAGE_TITLE);
 
         //3.Perform login
-        actionStep.loginSuccess();
+        Properties prop = null;
+        prop = ReaderUserDataForLogin.getLoginData();
+        actionStep.login(prop.getProperty("username")
+                , prop.getProperty("password"));
 
         //4.Assert Username is loggined
-        hardAssertSteps.checkIfUserLogged(TestData.userLoginName);
+        hardAssertSteps.checkIfUserLogged(TestData.USER_LOGIN_NAME);
 
         //5.Open through the header menu Service -> Different Elements Page
         actionStep.openDifferentElementsPage();
 
         //6.Select checkboxes
-        actionStep.selectCheckboxes(differentElementsPage.getCheckBoxes());
+        actionStep.selectCheckboxes();
 
         //7.Select radio
-        actionStep.selectRadios(differentElementsPage.getRadios());
+        actionStep.selectRadios();
 
         //8.Select in dropdown
         actionStep.selectColorInDropdown(3);
@@ -52,6 +58,6 @@ public class ExerciseSecond extends TestBase {
         // is corresponded to the status of radio button
         // 3)for dropdown there is a log row and value
         // is corresponded to the selected value
-        hardAssertSteps.checkLogPanel(differentElementsPage.getLogPanelExpected());
+        hardAssertSteps.checkLogPanel();
     }
 }

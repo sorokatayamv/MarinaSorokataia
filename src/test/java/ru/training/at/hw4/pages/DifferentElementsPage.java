@@ -53,15 +53,6 @@ public class DifferentElementsPage extends BaseClass {
         return logPanel;
     }
 
-    public Deque<String> getLogPanelExpected() {
-        Deque<String> logPanelExpected = new ArrayDeque<>();
-        logPanelExpected.add(TestData.logRowWater);
-        logPanelExpected.add(TestData.logRowWind);
-        logPanelExpected.add(TestData.logRowSelen);
-        logPanelExpected.add(TestData.logRowYellow);
-        return logPanelExpected;
-    }
-
     public List<WebElement> getCheckBoxes() {
         List<WebElement> checkBoxes = new ArrayList<>();
         checkBoxes.add(waterCheckbox);
@@ -69,9 +60,4 @@ public class DifferentElementsPage extends BaseClass {
         return checkBoxes;
     }
 
-    public List<WebElement> getRadios() {
-        List<WebElement> radios = new ArrayList<>();
-        radios.add(selenRadio);
-        return radios;
-    }
 }

@@ -134,15 +134,9 @@
             </properties>
         </profile>
         <profile>
-            <id>exerciseFirstTests</id>
+            <id>homework2test</id>
             <properties>
-                <testng.suite>${testng.configs.path}/exercisefirst.xml</testng.suite>
-            </properties>
-        </profile>
-        <profile>
-            <id>exerciseSecondTests</id>
-            <properties>
-                <testng.suite>${testng.configs.path}/exercisesecond.xml</testng.suite>
+                <testng.suite>${testng.configs.path}/homework2test.xml</testng.suite>
             </properties>
         </profile>
         <profile>

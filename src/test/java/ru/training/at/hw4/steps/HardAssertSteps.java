@@ -4,8 +4,11 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import ru.training.at.hw4.testdata.TestData;
 
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 public class HardAssertSteps extends AbstractStep {
 
@@ -27,12 +30,20 @@ public class HardAssertSteps extends AbstractStep {
     }
 
     @Step("Assert each checkbox, radio and color has an individual log row")
-    public void checkLogPanel(Deque<String> expectedLogPanel) {
-        for (WebElement e : differentElementsPage.getLogPanel()) {
-            Assert.assertEquals(e.getText().substring(9),
-                    expectedLogPanel.element());
+    public void checkLogPanel() {
+        List<String> expectedLogPanel = new ArrayList<>();
+        expectedLogPanel.add(TestData.LOG_ROW_WATER);
+        expectedLogPanel.add(TestData.LOG_ROW_WIND);
+        expectedLogPanel.add(TestData.LOG_ROW_SELEN);
+        expectedLogPanel.add(TestData.LOG_ROW_YELLOW);
+        for (int i = 0; i < expectedLogPanel.size(); i++) {
+            Assert.assertEquals(differentElementsPage
+                            .getLogPanel().element().getText(),
+                    expectedLogPanel.get(i));
             differentElementsPage.getLogPanel().remove();
-            expectedLogPanel.remove();
+            expectedLogPanel.remove(i);
         }
+
     }
 }
+

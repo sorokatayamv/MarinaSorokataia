@@ -4,10 +4,6 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import ru.training.at.hw4.utils.ReaderUserDataForLogin;
-
-import java.util.List;
-import java.util.Properties;
 
 public class ActionStep extends AbstractStep {
 
@@ -16,17 +12,7 @@ public class ActionStep extends AbstractStep {
     }
 
     @Step("Perform login")
-    public void loginSuccess() {
-        homePage.getLoginButton().click();
-        Properties prop = null;
-        prop = ReaderUserDataForLogin.getLoginData();
-        homePage.getLoginField().sendKeys(prop.getProperty("username"));
-        homePage.getPasswordField().sendKeys(prop.getProperty("password"));
-        homePage.getEnterButton().click();
-    }
-
-    @Step("Perform login")
-    public void loginFailed(String username, String password){
+    public void login(String username, String password){
         homePage.getLoginButton().click();
         homePage.getLoginField().sendKeys(username);
         homePage.getPasswordField().sendKeys(password);
@@ -40,17 +26,15 @@ public class ActionStep extends AbstractStep {
     }
 
     @Step("Select checkboxes")
-    public void selectCheckboxes(List<WebElement> checkBoxes) {
-        for (WebElement e : checkBoxes) {
+    public void selectCheckboxes() {
+        for (WebElement e : differentElementsPage.getCheckBoxes()) {
             e.click();
         }
     }
 
     @Step("Select radios")
-    public void selectRadios(List<WebElement> radios) {
-        for (WebElement e : radios) {
-            e.click();
-        }
+    public void selectRadios() {
+       differentElementsPage.getSelenRadio().click();
     }
 
     @Step("Select in dropdown")

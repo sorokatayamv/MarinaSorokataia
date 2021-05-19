@@ -110,15 +110,6 @@ public class HomePage extends BaseClass {
         return textsUnderImages;
     }
 
-    public List<String> getTextsUnderImagesExpected() {
-        List<String> textsExpected = new ArrayList<>();
-        textsExpected.add(TestData.textFirstHomePage);
-        textsExpected.add(TestData.textSecondHomePage);
-        textsExpected.add(TestData.textThirdHomePage);
-        textsExpected.add(TestData.textFourthHomePage);
-        return textsExpected;
-    }
-
     public List<WebElement> getLeftMenu() {
         List<WebElement> leftMenu = new ArrayList<>();
         leftMenu.add(homeLeftMenu);
@@ -127,16 +118,6 @@ public class HomePage extends BaseClass {
         leftMenu.add(metalAndColorsLeftMenu);
         leftMenu.add(elementsPackLeftMenu);
         return leftMenu;
-    }
-
-    public List<String> getLeftMenuExpected() {
-        List<String> leftMenuExpected = new ArrayList<>();
-        leftMenuExpected.add(TestData.homeLeftMenu);
-        leftMenuExpected.add(TestData.contactFormLeftMenu);
-        leftMenuExpected.add(TestData.serviceLeftMenu);
-        leftMenuExpected.add(TestData.metalAndColorsLeftMenu);
-        leftMenuExpected.add(TestData.elementsPackLeftMenu);
-        return leftMenuExpected;
     }
 
     public WebElement getLoginField() {

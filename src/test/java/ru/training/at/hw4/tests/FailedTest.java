@@ -20,13 +20,13 @@ public class FailedTest extends TestBase {
         actionStep.openHomePage();
 
         //2.Assert Browser title
-        assertionStep.checkBrowserTitle(TestData.homePageTitle);
+        assertionStep.checkBrowserTitle(TestData.HOME_PAGE_TITLE);
 
         //3.Perform login
-        actionStep.loginFailed("User", "pass");
+        actionStep.login("User", "pass");
 
         //4.Assert Username is loggined
-        assertionStep.checkIfUserLogged(TestData.userLoginName);
+        assertionStep.checkIfUserLogged(TestData.USER_LOGIN_NAME);
 
     }
 }

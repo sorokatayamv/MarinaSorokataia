@@ -7,6 +7,9 @@ import org.testng.asserts.SoftAssert;
 import ru.training.at.hw4.steps.ActionStep;
 import ru.training.at.hw4.steps.SoftAssertionStep;
 import ru.training.at.hw4.testdata.TestData;
+import ru.training.at.hw4.utils.ReaderUserDataForLogin;
+
+import java.util.Properties;
 
 public class ExerciseFirst extends TestBase {
 
@@ -22,13 +25,16 @@ public class ExerciseFirst extends TestBase {
         actionStep.openHomePage();
 
         //2.Assert Browser title
-        assertionStep.checkBrowserTitle(TestData.homePageTitle);
+        assertionStep.checkBrowserTitle(TestData.HOME_PAGE_TITLE);
 
         //3.Perform login
-        actionStep.loginSuccess();
+        Properties prop = null;
+        prop = ReaderUserDataForLogin.getLoginData();
+        actionStep.login(prop.getProperty("username")
+                , prop.getProperty("password"));
 
         //4.Assert Username is loggined
-        assertionStep.checkIfUserLogged(TestData.userLoginName);
+        assertionStep.checkIfUserLogged(TestData.USER_LOGIN_NAME);
 
         //5.Assert that there are 4 items on the header
         //section are displayed and they have proper texts

@@ -4,6 +4,10 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.asserts.SoftAssert;
+import ru.training.at.hw4.testdata.TestData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SoftAssertionStep extends AbstractStep {
 
@@ -43,9 +47,15 @@ public class SoftAssertionStep extends AbstractStep {
         for (WebElement e : homePage.getTextsUnderImages()) {
             softAssert.assertTrue(e.isDisplayed());
         }
+        List<String> textsUnderImagesExpected = new ArrayList<>();
+        textsUnderImagesExpected.add(TestData.TEXT_FIRST_HOME_PAGE);
+        textsUnderImagesExpected.add(TestData.TEXT_SECOND_HOME_PAGE);
+        textsUnderImagesExpected.add(TestData.TEXT_THIRD_HOME_PAGE);
+        textsUnderImagesExpected.add(TestData.TEXT_FOURTH_HOME_PAGE);
+
         for (int i = 0; i < homePage.getTextsUnderImages().size(); i++) {
             softAssert.assertEquals(homePage.getTextsUnderImages().get(i).getText(),
-                    homePage.getTextsUnderImagesExpected().get(i));
+                    textsUnderImagesExpected.get(i));
         }
     }
 
@@ -68,9 +78,16 @@ public class SoftAssertionStep extends AbstractStep {
         for (WebElement e : homePage.getLeftMenu()) {
             softAssert.assertTrue(e.isDisplayed());
         }
-        for (int i = 0; i < homePage.getLeftMenuExpected().size(); i++) {
+        List<String> leftMenuExpected = new ArrayList<>();
+        leftMenuExpected.add(TestData.HOME_LEFT_MENU);
+        leftMenuExpected.add(TestData.CONTACT_FORM_LEFT_MENU);
+        leftMenuExpected.add(TestData.SERVICE_LEFT_MENU);
+        leftMenuExpected.add(TestData.METAL_AND_COLORS_LEFT_MENU);
+        leftMenuExpected.add(TestData.ELEMENTS_PACK_LEFT_MENU);
+
+        for (int i = 0; i < homePage.getLeftMenu().size(); i++) {
             softAssert.assertEquals(homePage.getLeftMenu().get(i).getText(),
-                    homePage.getLeftMenuExpected().get(i));
+                    leftMenuExpected.get(i));
         }
     }
 

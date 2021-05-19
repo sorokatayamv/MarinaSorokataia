@@ -37,10 +37,10 @@ public class Header extends BaseClass {
 
     public List<String> getHeaderExpected(){
         List<String> headerExpected = new ArrayList<>();
-        headerExpected.add(TestData.homeHeader);
-        headerExpected.add(TestData.contactFormHeader);
-        headerExpected.add(TestData.serviceHeader);
-        headerExpected.add(TestData.metalsAndColorsHeader);
+        headerExpected.add(TestData.HOME_HEADER);
+        headerExpected.add(TestData.CONTACT_FORM_HEADER);
+        headerExpected.add(TestData.SERVICE_HEADER);
+        headerExpected.add(TestData.METALS_AND_COLORS_HEADER);
         return headerExpected;
     }
     public WebElement getDifferentElementsFromServiceHeader() {
