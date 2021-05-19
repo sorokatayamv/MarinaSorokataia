@@ -1,10 +1,11 @@
 package ru.training.at.hw4.testdata;
 
-public class TestData {
-    public static String testData;
-    private TestData(String testData) {
-        this.testData = testData;
-    }
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class TestData {
+
     public static final String HOME_PAGE_TITLE = "Home Page";
     public static final String USER_LOGIN_NAME = "ROMAN IOVLEV";
     public final static String HOME_HEADER = "HOME";
