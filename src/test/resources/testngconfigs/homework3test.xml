@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="homework3test">
+    <test name="homePageTestsWithSoftAsserts">
+        <classes>
+            <class name="ru.training.at.hw3.tests.ExerciseFirst"/>
+        </classes>
+    </test>
+    <test name="homePageTests">
+        <classes>
+            <class name="ru.training.at.hw3.tests.ExerciseSecond"/>
+        </classes>
+    </test>
+</suite>
+
