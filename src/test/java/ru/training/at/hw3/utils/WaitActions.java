@@ -7,7 +7,7 @@ import ru.training.at.hw3.tests.TestBase;
 
 import java.util.function.Function;
 
-public class WaitActions extends TestBase {
+public class WaitActions{
     private WebDriverWait webDriverWait;
 
     public WaitActions(WebDriver webDriver) {

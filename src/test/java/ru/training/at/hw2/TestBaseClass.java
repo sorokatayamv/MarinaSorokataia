@@ -1,23 +1,25 @@
 package ru.training.at.hw2;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.asserts.SoftAssert;
+import org.testng.annotations.*;
 
-public class TestBaseClass {
+import java.util.concurrent.TimeUnit;
+
+public abstract class TestBaseClass {
     public WebDriver webDriver;
 
-    @BeforeTest
-    public void beforeTest(){
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+    @BeforeClass
+    public void beforeTest() {
+        WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
+        webDriver.manage().timeouts()
+                .implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @AfterTest
-    public void afterTest(){
+    @AfterClass
+    public void afterTest() {
         webDriver.quit();
     }
 }

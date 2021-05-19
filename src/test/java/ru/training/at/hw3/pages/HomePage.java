@@ -28,17 +28,19 @@ public class HomePage extends BaseClass {
     @FindBy(xpath = "//*[@id='login-button']")
     private WebElement enterButton;
 
-    @FindBy(css = "span[class='icons-benefit icon-practise']")
-    private WebElement imageFirstHomePage;
+    @FindBy(css = "span.icons-benefit")
+    List<WebElement> images;
 
-    @FindBy(css = "span[class='icons-benefit icon-custom']")
-    private WebElement imageSecondHomePage;
+    @FindBy(css = "span.benefit-txt")
+    List <WebElement> texts;
 
-    @FindBy(css = "span[class='icons-benefit icon-multi']")
-    private WebElement imageThirdHomePage;
+    public List<WebElement> getTextsUnderImages(){
+        return texts;
+    }
 
-    @FindBy(css = "span[class='icons-benefit icon-base']")
-    private WebElement imageFourthHomePage;
+    public List<WebElement> getImages() {
+        return images;
+    }
 
     @FindBy(xpath = "//*[text()='To include good practices' and @class='benefit-txt']")
     private WebElement textFirstHomePage;
@@ -106,22 +108,6 @@ public class HomePage extends BaseClass {
         return userLoginName;
     }
 
-    public WebElement getImageFirstHomePage() {
-        return imageFirstHomePage;
-    }
-
-    public WebElement getImageSecondHomePage() {
-        return imageSecondHomePage;
-    }
-
-    public WebElement getImageThirdHomePage() {
-        return imageThirdHomePage;
-    }
-
-    public WebElement getImageFourthHomePage() {
-        return imageFourthHomePage;
-    }
-
     public WebElement getTextFirstHomePage() {
         return textFirstHomePage;
     }
@@ -170,30 +156,22 @@ public class HomePage extends BaseClass {
         return loginButton;
     }
 
-    public List<WebElement> getImages() {
-        List<WebElement> images = new ArrayList<>();
-        images.add(imageFirstHomePage);
-        images.add(imageSecondHomePage);
-        images.add(imageThirdHomePage);
-        images.add(imageFourthHomePage);
-        return images;
-    }
 
-    public List<WebElement> getTextsUnderImages(){
+   /* public List<WebElement> getTextsUnderImages(){
         List<WebElement> textsUnderImages = new ArrayList<>();
         textsUnderImages.add(textFirstHomePage);
         textsUnderImages.add(textSecondHomePage);
         textsUnderImages.add(textThirdHomePage);
         textsUnderImages.add(textFourthHomePage);
         return textsUnderImages;
-    }
+    }*/
 
     public List<String> getTextsUnderImagesExpected(){
         List<String> textsExpected = new ArrayList<>();
-        textsExpected.add(TestData.textFirstHomePage);
-        textsExpected.add(TestData.textSecondHomePage);
-        textsExpected.add(TestData.textThirdHomePage);
-        textsExpected.add(TestData.textFourthHomePage);
+        textsExpected.add(TestData.TEXT_FIRST_HOME_PAGE);
+        textsExpected.add(TestData.TEXT_SECOND_HOME_PAGE);
+        textsExpected.add(TestData.TEXT_THIRD_HOME_PAGE);
+        textsExpected.add(TestData.TEXT_FOURTH_HOME_PAGE);
         return textsExpected;
     }
 
@@ -209,11 +187,11 @@ public class HomePage extends BaseClass {
 
     public List<String> getLeftMenuExpected() {
         List<String> leftMenuExpected = new ArrayList<>();
-        leftMenuExpected.add(TestData.homeLeftMenu);
-        leftMenuExpected.add(TestData.contactFormLeftMenu);
-        leftMenuExpected.add(TestData.serviceLeftMenu);
-        leftMenuExpected.add(TestData.metalAndColorsLeftMenu);
-        leftMenuExpected.add(TestData.elementsPackLeftMenu);
+        leftMenuExpected.add(TestData.HOME_LEFT_MENU);
+        leftMenuExpected.add(TestData.CONTACT_FORM_LEFT_MENU);
+        leftMenuExpected.add(TestData.SERVICE_LEFT_MENU);
+        leftMenuExpected.add(TestData.METAL_AND_COLORS_LEFT_MENU);
+        leftMenuExpected.add(TestData.ELEMENTS_PACK_LEFT_MENU);
         return leftMenuExpected;
     }
 

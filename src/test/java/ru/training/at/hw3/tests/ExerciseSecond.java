@@ -23,7 +23,7 @@ public class ExerciseSecond extends TestBase {
 
         //2.Assert Browser title
         Assert.assertEquals(homePage.getBrowserTitle(),
-                TestData.homePageTitle);
+                TestData.HOME_PAGE_TITLE);
 
         //3.Perform login
         waitActions.waitUntilCondition(webDriver ->
@@ -34,7 +34,7 @@ public class ExerciseSecond extends TestBase {
         waitActions.waitUntilCondition(webDriver ->
                 homePage.getUserLoginName().isDisplayed());
         Assert.assertEquals(homePage.getUserLoginName().getText(),
-                TestData.userLoginName);
+                TestData.USER_LOGIN_NAME);
 
         //5.Open through the header menu Service -> Different Elements Page
         Header header = PageFactory.initElements(webDriver, Header.class);
