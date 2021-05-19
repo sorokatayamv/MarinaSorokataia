@@ -103,10 +103,10 @@ public class DifferentElementsPage extends BaseClass {
 
     public Deque<String> getLogPanelExpected() {
         Deque<String> logPanelExpected = new ArrayDeque<>();
-        logPanelExpected.add(TestData.logRowWater);
-        logPanelExpected.add(TestData.logRowWind);
-        logPanelExpected.add(TestData.logRowSelen);
-        logPanelExpected.add(TestData.logRowYellow);
+        logPanelExpected.add(TestData.LOG_ROW_WATER);
+        logPanelExpected.add(TestData.LOG_ROW_WIND);
+        logPanelExpected.add(TestData.LOG_ROW_SELEN);
+        logPanelExpected.add(TestData.LOG_ROW_YELLOW);
         return logPanelExpected;
     }
 

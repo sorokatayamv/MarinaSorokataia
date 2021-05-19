@@ -23,7 +23,7 @@ public class ExerciseFirst extends TestBase {
 
         //2.Assert Browser title
         softAssert.assertEquals(homePage.getBrowserTitle(),
-                TestData.homePageTitle);
+                TestData.HOME_PAGE_TITLE);
 
         //3.Perform login
         waitActions.waitUntilCondition(webDriver ->
@@ -34,7 +34,7 @@ public class ExerciseFirst extends TestBase {
         waitActions.waitUntilCondition(webDriver ->
                 homePage.getUserLoginName().isDisplayed());
         softAssert.assertEquals(homePage.getUserLoginName().getText(),
-                TestData.userLoginName);
+                TestData.USER_LOGIN_NAME);
 
         //5.Assert that there are 4 items on the header
         //section are displayed and they have proper texts
@@ -50,10 +50,6 @@ public class ExerciseFirst extends TestBase {
         //7.Assert that there are 4 texts on the Index Page under icons and they have proper text
         for (WebElement e : homePage.getTextsUnderImages()) {
             softAssert.assertTrue(e.isDisplayed());
-        }
-        for (int i = 0; i < homePage.getTextsUnderImages().size(); i++) {
-            softAssert.assertEquals(homePage.getTextsUnderImages().get(i).getText(),
-                    homePage.getTextsUnderImagesExpected().get(i));
         }
 
         //8.Assert that there is the iframe with “Frame Button” exist
