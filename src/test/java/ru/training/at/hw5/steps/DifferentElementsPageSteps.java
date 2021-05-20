@@ -1,6 +1,5 @@
 package ru.training.at.hw5.steps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebElement;
@@ -37,36 +36,28 @@ public class DifferentElementsPageSteps {
     @Then("I check if there are an individual log row and "
             + "value is corresponded to the status of Water checkbox")
     public void checkWaterLogRow() {
-        List<String> logRowsExpected = TestContext.getInstance()
-                .getTestObject(TestContext.LOG_ROWS);
-
-        Assert.assertTrue(logRowsExpected.contains(TestData.LOG_ROW_WATER));
+        List<String> logRowsActual = differentElementsPage.logRowsWithoutDate();
+        Assert.assertTrue(logRowsActual.contains(TestData.LOG_ROW_WATER));
     }
 
     @Then("I check if there are an individual log row and "
             + "value is corresponded to the status of Wind checkbox")
     public void checkWindLogRow() {
-        List<String> logRowsExpected = TestContext.getInstance()
-                .getTestObject(TestContext.LOG_ROWS);
-
-        Assert.assertTrue(logRowsExpected.contains(TestData.LOG_ROW_WIND));
+        List<String> logRowsActual = differentElementsPage.logRowsWithoutDate();
+        Assert.assertTrue(logRowsActual.contains(TestData.LOG_ROW_WIND));
     }
 
     @Then("I check if there are an individual log row "
             + "and value is corresponded to the status of Selen radio")
     public void checkSelenLogRow() {
-        List<String> logRowsExpected = TestContext.getInstance()
-                .getTestObject(TestContext.LOG_ROWS);
-
-        Assert.assertTrue(logRowsExpected.contains(TestData.LOG_ROW_SELEN));
+        List<String> logRowsActual = differentElementsPage.logRowsWithoutDate();
+        Assert.assertTrue(logRowsActual.contains(TestData.LOG_ROW_SELEN));
     }
 
     @Then("I check if there are an individual log row "
             + "and value is corresponded to the status of Yellow color")
-    public void checkYellowLogRow(){
-        List<String> logRowsExpected = TestContext.getInstance()
-                .getTestObject(TestContext.LOG_ROWS);
-
-        Assert.assertTrue(logRowsExpected.contains(TestData.LOG_ROW_YELLOW));
+    public void checkYellowLogRow() {
+        List<String> logRowsActual = differentElementsPage.logRowsWithoutDate();
+        Assert.assertTrue(logRowsActual.contains(TestData.LOG_ROW_YELLOW));
     }
 }

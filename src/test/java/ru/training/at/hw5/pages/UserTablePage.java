@@ -20,7 +20,7 @@ public class UserTablePage extends BaseClass {
     @FindBy(css = "td>a")
     private List<WebElement> allUsers;
 
-    @FindBy(css = ".user-descr")
+    @FindBy(css = "tr>td:nth-child(4)>div>span")
     private List<WebElement> allDescriptions;
 
     @FindBy(css = "input[type='checkbox']")
@@ -39,8 +39,8 @@ public class UserTablePage extends BaseClass {
         super(driver);
     }
 
-    public String getUserPageTitle(){
-        return  driver.getTitle();
+    public String getUserPageUrl(){
+        return  driver.getCurrentUrl();
     }
 
     public List<String> getAllNumbers(){
@@ -64,6 +64,11 @@ public class UserTablePage extends BaseClass {
 
     public List<String> getAllLogRows(){
         return allLogRows.stream().map(WebElement::getText)
+                .collect(Collectors.toList());
+    }
+
+    public List<String> getDropdownValues(){
+        return dropdownValues.stream().map(WebElement::getText)
                 .collect(Collectors.toList());
     }
 }

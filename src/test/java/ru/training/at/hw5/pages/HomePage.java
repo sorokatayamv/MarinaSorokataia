@@ -34,7 +34,7 @@ public class HomePage extends BaseClass {
         driver.get(URL);
     }
 
-    public void login(){
+    public void login() {
         loginButton.click();
         Properties prop = null;
         prop = ReaderUserDataForLogin.getLoginData();

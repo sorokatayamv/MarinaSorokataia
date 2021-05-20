@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import ru.training.at.hw4.testdata.TestData;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ import java.util.stream.Collectors;
 
 @Getter
 public class DifferentElementsPage extends BaseClass {
-
 
     @FindBy(css = "input[type='checkbox'")
     List<WebElement> checkboxes;
@@ -51,22 +49,19 @@ public class DifferentElementsPage extends BaseClass {
             "> div > ul > li:nth-child(1)")
     private WebElement logRowYellow;
 
-    public DifferentElementsPage(WebDriver driver){
+    public DifferentElementsPage(WebDriver driver) {
         super(driver);
     }
 
-    public List<String> getAllLogRows(){
+    public List<String> getAllLogRows() {
         return allLogRows.stream().map(webElement -> webElement.getText())
                 .collect(Collectors.toList());
     }
 
-    public Deque<WebElement> getLogPanel() {
-        Deque<WebElement> logPanel = new ArrayDeque<>();
-        logPanel.add(logRowWater);
-        logPanel.add(logRowWind);
-        logPanel.add(logRowSelen);
-        logPanel.add(logRowYellow);
-        return logPanel;
+    public List<String> logRowsWithoutDate(){
+        return allLogRows.stream().map(webElement ->
+                webElement.getText().substring(9))
+                .collect(Collectors.toList());
     }
 
     public List<WebElement> getCheckboxes() {
@@ -76,15 +71,10 @@ public class DifferentElementsPage extends BaseClass {
         return checkBoxes;
     }
 
-    public List<WebElement> getRadios() {
-        List<WebElement> radios = new ArrayList<>();
-        radios.add(selenRadio);
-        return radios;
-    }
 
     public void selectColorInDropdown() {
         Select dropdownMenu = new Select(dropdownColor);
-        dropdownMenu.selectByValue("Yellow");
+        dropdownMenu.selectByIndex(3);
     }
 
 }

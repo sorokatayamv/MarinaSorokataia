@@ -33,7 +33,7 @@ public class Header extends BaseClass {
     @FindBy(css = "a[href = 'user-table.html']")
     private WebElement userTable;
 
-    public List<String> getHeader(){
+    public List<String> getHeader() {
         List<String> header = new ArrayList<>();
         header.add(homeHeader.getText());
         header.add(contactFormHeader.getText());
@@ -45,11 +45,6 @@ public class Header extends BaseClass {
     public WebElement getDifferentElementsFromServiceHeader() {
         return differentElementsFromServiceHeader;
     }
-
-    public Header getHeaderElements(){
-        return new Header(driver);
-    }
-
 
 }
 
