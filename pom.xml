@@ -87,6 +87,16 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>6.10.3</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>6.10.4</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -162,6 +172,12 @@
             <id>homework4test</id>
             <properties>
                 <testng.suite>${testng.configs.path}/homework4test.xml</testng.suite>
+            </properties>
+        </profile>
+        <profile>
+            <id>cucumberTests</id>
+            <properties>
+                <testng.suite>${testng.configs.path}/cucumbertests.xml</testng.suite>
             </properties>
         </profile>
     </profiles>
