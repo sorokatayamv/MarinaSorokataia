@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class MetalAndColorsData {
+public class MetalAndColorsFormTestData {
 
     private List<Integer> summary;
 

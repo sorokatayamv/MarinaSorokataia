@@ -14,15 +14,15 @@ public class DataProvider {
     public static final String TEST_DATA_PATH =
             "src/test/resources/JDI_ex8_metalsColorsDataSet.json";
 
-    private List<MetalAndColorsData> getData() {
-        List<MetalAndColorsData> dataList = new ArrayList<>();
+    private List<MetalAndColorsFormTestData> getTestDataJson() {
+        List<MetalAndColorsFormTestData> dataList = new ArrayList<>();
         try (InputStream inputStream = new FileInputStream(TEST_DATA_PATH)) {
             JsonReader reader = new JsonReader(new InputStreamReader(inputStream, "UTF-8"));
             GsonBuilder builder = new GsonBuilder();
             Map<String, Object> map = builder.create().fromJson(reader, Object.class);
             for (Map.Entry<String, Object> entry : map.entrySet()) {
-                MetalAndColorsData data = new Gson().fromJson(entry.getValue().toString(),
-                        MetalAndColorsData.class);
+                MetalAndColorsFormTestData data = new Gson().fromJson(entry.getValue().toString(),
+                        MetalAndColorsFormTestData.class);
                 dataList.add(data);
             }
         } catch (IOException e) {
@@ -32,10 +32,10 @@ public class DataProvider {
     }
 
     @org.testng.annotations.DataProvider(name = "metalAndColors")
-    public Object[][] dataProvider() {
-        List<MetalAndColorsData> dataList = getData();
+    public Object[][] getMetalsAndColorsTestData() {
+        List<MetalAndColorsFormTestData> dataList = getTestDataJson();
         return dataList.stream()
-                .map(data -> new MetalAndColorsData[]{data})
+                .map(data -> new MetalAndColorsFormTestData[]{data})
                 .toArray(Object[][]::new);
     }
 }

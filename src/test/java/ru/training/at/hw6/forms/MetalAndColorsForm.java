@@ -6,10 +6,14 @@ import com.epam.jdi.light.elements.composite.Form;
 import com.epam.jdi.light.elements.pageobjects.annotations.FindBy;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.JDropdown;
 import com.epam.jdi.light.ui.html.elements.common.Button;
+import com.epam.jdi.light.ui.html.elements.common.Checkbox;
 import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
-import ru.training.at.hw6.testdata.MetalAndColorsData;
+import ru.training.at.hw6.testdata.MetalAndColorsFormTestData;
 
-public class MetalAndColorsForm extends Form<MetalAndColorsData> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MetalAndColorsForm extends Form<MetalAndColorsFormTestData> {
 
     @FindBy(name = "custom_radio_odd")
     public RadioButtons radioButtonsOdds;
@@ -41,8 +45,13 @@ public class MetalAndColorsForm extends Form<MetalAndColorsData> {
     @FindBy(id = "submit-button")
     public Button submit;
 
+    @FindBy(xpath = "//div[@id='salad-dropdown']//span")
+    public Button vegetablesButton;
 
-    public void selectElements(MetalAndColorsData data) {
+    @FindBy(id = "g7")
+    public Checkbox vegetableCheckbox;
+
+    public void fill(MetalAndColorsFormTestData data) {
 
         radioButtonsOdds.select(data.getSummary().get(0).toString());
         radioButtonsEven.select(data.getSummary().get(1).toString());
@@ -54,13 +63,19 @@ public class MetalAndColorsForm extends Form<MetalAndColorsData> {
         metals.select(data.getMetals());
         colors.select(data.getColor());
 
-        vegetables.select(3);
+        resetVegetablesCheckbox();
         for (String v : data.getVegetables()) {
             vegetables.select(v);
         }
     }
 
-    public void clickSubmit() {
+    public void resetVegetablesCheckbox() {
+        vegetablesButton.click();
+        vegetableCheckbox.click();
+    }
+
+    @Override
+    public void submit() {
         submit.click();
     }
 }
