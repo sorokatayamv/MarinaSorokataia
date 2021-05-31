@@ -10,9 +10,6 @@ import com.epam.jdi.light.ui.html.elements.common.Checkbox;
 import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
 import ru.training.at.hw6.testdata.MetalAndColorsFormTestData;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MetalAndColorsForm extends Form<MetalAndColorsFormTestData> {
 
     @FindBy(name = "custom_radio_odd")
@@ -51,6 +48,7 @@ public class MetalAndColorsForm extends Form<MetalAndColorsFormTestData> {
     @FindBy(id = "g7")
     public Checkbox vegetableCheckbox;
 
+    @Override
     public void fill(MetalAndColorsFormTestData data) {
 
         radioButtonsOdds.select(data.getSummary().get(0).toString());

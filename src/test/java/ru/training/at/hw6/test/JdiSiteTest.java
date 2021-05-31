@@ -22,12 +22,10 @@ public class JdiSiteTest extends BaseTest {
         metalAndColorsPage.selectElements(data);
 
         List<String> actualResultsInStrings = metalAndColorsPage.getResultList();
-        List<String> expectedResultsInString = metalAndColorsPage
+        List<String> expectedResultsInString = MetalAndColorsFormTestData
                 .getExpectedResultInString(data);
 
-        System.out.println(actualResultsInStrings + " " + expectedResultsInString);
         Assert.assertTrue(actualResultsInStrings.containsAll(expectedResultsInString));
-
     }
 
     @AfterMethod
